@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
-import Tyrell from "../src/components/Tyrell";
+import Tyrell from "./components/Tyrell";
+import Targaryen from "./components/Targaryen";
+import Lannister from "./components/Lannister";
+import Baratheon from "./components/Baratheon";
+import BaratheonR from "./components/BaratheonR";
 
 
  class App extends React.Component {
@@ -15,8 +19,7 @@ import Tyrell from "../src/components/Tyrell";
       baratheonR: null
     }
   }
-
-  componentDidMount(){
+  firstFiveQuestions(){
     const requestTyrell=axios.get("https://anapioficeandfire.com/api/characters/16");
     const requestTargaryen=axios.get("https://www.anapioficeandfire.com/api/houses/378");
     const requestLannister=axios.get("https://www.anapioficeandfire.com/api/houses/229");
@@ -28,14 +31,27 @@ import Tyrell from "../src/components/Tyrell";
      this.setState({targaryen: responses[1].data});
      this.setState({lannister: responses[2].data});
      this.setState({baratheon: responses[3].data});
-     this.setState({baratheonC: responses[4].data});
+     this.setState({baratheonR: responses[4].data});
     })).catch(errors=>{console.log(errors)})
+  }
+
+  componentDidMount(){
+    this.firstFiveQuestions();
   }
 
   render(){
   return (
     <div className="App">
-      <h1></h1>
+      <h3>Where was Margaery Tyrell born?</h3>
+      <Tyrell info={this.state.tyrell}/>
+      <h3>What region is House Targaryen in?</h3>
+      <Targaryen info={this.state.targaryen}/>
+      <h3>What's the coat of arms of House Lannister?</h3>
+      <Lannister  info={this.state.lannister}/>
+      <h3>What is the second seat of House Baratheon?</h3>
+      <Baratheon info={this.state.baratheon} />
+      <h3>What is Robert Baratheon's second alias?</h3>
+      <BaratheonR info={this.state.baratheonR}/>
     </div>
   );
 }

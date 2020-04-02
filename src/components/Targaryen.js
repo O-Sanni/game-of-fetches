@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Tyrell (props){
+function Targaryen (props){
     function nullCheck(){
         if(props.info===null){
             return "empty";
@@ -11,9 +11,9 @@ function Tyrell (props){
     }
     return (
         <div>
-            <h4>Born: {nullCheck().born}</h4>
+            <h4>Region: {nullCheck().region}</h4>
         </div>
     );
 };
 
-export default Tyrell;
+export default Targaryen;

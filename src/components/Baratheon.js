@@ -1,19 +1,19 @@
 import React from 'react';
 
-function Tyrell (props){
+function Baratheon (props){
     function nullCheck(){
         if(props.info===null){
             return "empty";
         }
 
         else{
-        return props.info;}
+        return props.info.seats[1];}
     }
     return (
         <div>
-            <h4>Born: {nullCheck().born}</h4>
+            <h4>Seat: {nullCheck()}</h4>
         </div>
     );
 };
 
-export default Tyrell;
+export default Baratheon;
