@@ -1,17 +1,11 @@
 import React from 'react';
+import nullCheck from "../components/nullCheck";
 
 function Tyrell (props){
-    function nullCheck(){
-        if(props.info===null){
-            return "empty";
-        }
-
-        else{
-        return props.info;}
-    }
+    
     return (
         <div>
-            <h4>Born: {nullCheck().born}</h4>
+            <h4>Born: {nullCheck(props).born}</h4>
         </div>
     );
 };

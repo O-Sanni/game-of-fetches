@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function BaratheonR (props){
     function nullCheck(){
         if(props.info===null){

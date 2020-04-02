@@ -6,7 +6,7 @@ import Targaryen from "./components/Targaryen";
 import Lannister from "./components/Lannister";
 import Baratheon from "./components/Baratheon";
 import BaratheonR from "./components/BaratheonR";
-
+import StarkFounder from "./components/StarkFounder";
 
  class App extends React.Component {
    constructor(props){
@@ -16,7 +16,8 @@ import BaratheonR from "./components/BaratheonR";
       targaryen:null,
       lannister: null,
       baratheon: null,
-      baratheonR: null
+      baratheonR: null,
+      starkFounder: null
     }
   }
   firstFiveQuestions(){
@@ -35,8 +36,21 @@ import BaratheonR from "./components/BaratheonR";
     })).catch(errors=>{console.log(errors)})
   }
 
+  async getStarkFounder(){
+    try{
+      const starkHouse= await axios.get("https://www.anapioficeandfire.com/api/houses/362");
+      const founderInfo=await axios.get(starkHouse.data.founder);
+      this.setState({starkFounder: founderInfo.data});
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
+
   componentDidMount(){
     this.firstFiveQuestions();
+    this.getStarkFounder();
   }
 
   render(){
@@ -52,6 +66,8 @@ import BaratheonR from "./components/BaratheonR";
       <Baratheon info={this.state.baratheon} />
       <h3>What is Robert Baratheon's second alias?</h3>
       <BaratheonR info={this.state.baratheonR}/>
+      <h3>What's the name of the founder of House Stark?</h3>
+    <StarkFounder info={this.state.starkFounder} />
     </div>
   );
 }
