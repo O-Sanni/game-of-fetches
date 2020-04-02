@@ -1,20 +1,22 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import Tyrell from "../src/components/Tyrell";
+
 
  class App extends React.Component {
    constructor(props){
     super(props);
     this.state={
-      isLoaded:false,
-      data: []
+      tyrell: null,
+      targaryen:null,
+      lannister: null,
+      baratheon: null,
+      baratheonR: null
     }
   }
 
   componentDidMount(){
-    //let stark ="http://www.anapioficeandfire.com/api/houses/362";
-    //let starkC="http://www.anapioficeandfire.com/api/characters/232";
-    
     const requestTyrell=axios.get("https://anapioficeandfire.com/api/characters/16");
     const requestTargaryen=axios.get("https://www.anapioficeandfire.com/api/houses/378");
     const requestLannister=axios.get("https://www.anapioficeandfire.com/api/houses/229");
@@ -22,18 +24,18 @@ import axios from 'axios';
     const requestBaratheonR=axios.get("https://www.anapioficeandfire.com/api/characters/901");
     axios.all([requestTyrell,requestTargaryen, requestLannister, requestBaratheon, requestBaratheonR])
     .then(axios.spread((...responses)=> {
-      const responseTyrell=responses[0];
-      const responseTargaryen=responses[1];
-      const responseLannister=responses[2];
-      const responseBaratheon=responses[3];
-      const responseBaratheonR=responses[4];
-      console.log(responseTyrell,responseTargaryen,responseLannister,responseBaratheon,responseBaratheonR);
+     this.setState({tyrell: responses[0].data});
+     this.setState({targaryen: responses[1].data});
+     this.setState({lannister: responses[2].data});
+     this.setState({baratheon: responses[3].data});
+     this.setState({baratheonC: responses[4].data});
     })).catch(errors=>{console.log(errors)})
   }
+
   render(){
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <h1></h1>
     </div>
   );
 }
