@@ -22,6 +22,7 @@ import StarkFounder from "./components/StarkFounder";
       povBooks: []
     }
   }
+  
   firstFiveQuestions(){
     const requestTyrell=axios.get("https://anapioficeandfire.com/api/characters/16");
     const requestTargaryen=axios.get("https://www.anapioficeandfire.com/api/houses/378");
