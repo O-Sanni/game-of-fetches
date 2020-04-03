@@ -38,7 +38,7 @@ import StarkFounder from "./components/StarkFounder";
     })).catch(errors=>{console.log(errors)})
   }
  
-
+// the code was discussed at Angel's office hours on April 1
   async getStarkFounder(){
     try{
       const starkHouse= await axios.get("https://www.anapioficeandfire.com/api/houses/362");
