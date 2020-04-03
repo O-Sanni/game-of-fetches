@@ -8,3 +8,7 @@
 
 
     function nullCheck() was discussed on April 1 during office Hours as well as async and await so I included them in my code
+
+## Pseudocode
+
+create a separate components for first 5 questions first; in the APP.js create state and use axios.all to set states for first 5 answers, so those states will hold the information the particular topic; then use separate functions to answer questions 6 and 7; also render all the components; each component js will use the nullCheck() function to make sure to receive a data. and will return the answer for the partiqular question
