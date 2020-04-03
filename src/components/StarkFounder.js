@@ -5,7 +5,7 @@ function StarkFounder(props) {
   
   return(
     <div>
-      <h3>Name: { nullCheck(props).name }</h3>
+      <h4>Name: { nullCheck(props).name }</h4>
     </div>
   );
 };
