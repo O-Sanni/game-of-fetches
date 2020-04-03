@@ -7,6 +7,7 @@ import Lannister from "./components/Lannister";
 import Baratheon from "./components/Baratheon";
 import BaratheonR from "./components/BaratheonR";
 import StarkFounder from "./components/StarkFounder";
+//mport POVBooks from "./components/POVBooks";
 
  class App extends React.Component {
    constructor(props){
@@ -35,6 +36,7 @@ import StarkFounder from "./components/StarkFounder";
      this.setState({baratheonR: responses[4].data});
     })).catch(errors=>{console.log(errors)})
   }
+ 
 
   async getStarkFounder(){
     try{
@@ -47,10 +49,30 @@ import StarkFounder from "./components/StarkFounder";
     }
   }
 
+async getPOVBooks(){
+  try{
+    const catelynStark=await axios.get("https://www.anapioficeandfire.com/api/characters/232");
+      Promise.all([
+        axios.get(catelynStark.data.povBooks[0]),
+        axios.get(catelynStark.data.povBooks[1]),
+        axios.get(catelynStark.data.povBooks[2])
+      ]).then ((responses)=>{
+       responses.map((book)=>{
+         this.stat(book.data.name);
+       })
+      }
+      )}
+    catch(e){
+      console.log(e);
+    }
+}
+  
 
   componentDidMount(){
     this.firstFiveQuestions();
     this.getStarkFounder();
+    this.getPOVBooks();
+
   }
 
   render(){
@@ -68,6 +90,8 @@ import StarkFounder from "./components/StarkFounder";
       <BaratheonR info={this.state.baratheonR}/>
       <h3>What's the name of the founder of House Stark?</h3>
     <StarkFounder info={this.state.starkFounder} />
+    <h3>What are the titles of Catelyn Stark's three POV books? </h3>
+    {/* <POVBooks info={this.getPOVBooks}/> */}
     </div>
   );
 }
